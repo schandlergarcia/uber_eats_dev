@@ -8,11 +8,11 @@ export const MenuFragment = gql `fragment MenuFragment on MenuItems__r {
     Category__c{
         value
     }
-    Description__c {
+    Price {
         value
     }
-    Price__c {
-        value
+    Description{
+        Value
     }
 }`
 

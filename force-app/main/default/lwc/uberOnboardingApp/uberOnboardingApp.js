@@ -45,7 +45,18 @@ export default class UberOnboardingApp extends LightningElement {
                         ...TaskFragment
                     }
                     MenuItems__r {
-                      ...MenuFragment
+                      Name {
+                        value
+                    }
+                    Category__c{
+                        value
+                    }
+                    Price {
+                        value
+                    }
+                    Description{
+                        Value
+                    }
                   }
                   }
                 }

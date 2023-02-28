@@ -1,4 +1,6 @@
 import { LightningElement, api } from 'lwc';
+
+// import 3rd party web component library
 import "./uber-library";
 
 export default class UberMenuPreview extends LightningElement {
