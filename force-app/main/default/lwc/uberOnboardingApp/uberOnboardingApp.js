@@ -1,15 +1,14 @@
 import { LightningElement, wire, api } from "lwc";
 import { gql, graphql } from "lightning/uiGraphQLApi";
-import { ContactFragment } from 'c/UberContactDetails';
+import { ContactFragment } from "c/UberContactDetails";
 import { TaskFragment } from "../uberOnboardingTask/uberOnboardingTask";
 import { MenuFragment } from "../uberMenu/uberMenu";
 
 export default class UberOnboardingApp extends LightningElement {
+  @api recordId;
 
-    @api recordId;
-
-    @wire(graphql, {
-        query: gql`
+  @wire(graphql, {
+    query: gql`
         query getOnboardingData {
           uiapi {
             query {
@@ -45,19 +44,8 @@ export default class UberOnboardingApp extends LightningElement {
                         ...TaskFragment
                     }
                     MenuItems__r {
-                      Name {
-                        value
+                      // Insert Menu Items
                     }
-                    Category__c{
-                        value
-                    }
-                    Price {
-                        value
-                    }
-                    Description{
-                        Value
-                    }
-                  }
                   }
                 }
               }
@@ -68,20 +56,20 @@ export default class UberOnboardingApp extends LightningElement {
         ${TaskFragment}
         ${MenuFragment}
         `,
-        variables: '$variables'
-      })
-      graphqlQueryResult({ data, errors }) {
-        if (data) {
-          this.results = data.uiapi.query.Account.edges.map((edge) => edge.node);
-          this.errors = undefined;
-        } else if (errors) {
-          this.errors = errors;
-        }
-      }
-    
-      get variables() {
-        return {
-          recordId: this.recordId
-        };
-      }
+    variables: "$variables"
+  })
+  graphqlQueryResult({ data, errors }) {
+    if (data) {
+      this.results = data.uiapi.query.Account.edges.map((edge) => edge.node);
+      this.errors = undefined;
+    } else if (errors) {
+      this.errors = errors;
+    }
+  }
+
+  get variables() {
+    return {
+      recordId: this.recordId
+    };
+  }
 }
